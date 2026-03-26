@@ -7,4 +7,4 @@ Crear un blog de noticias aplicando arquitectura Full Stack. El backend está de
 Constanza
 
 ## URL del Repositorio GitHub
-[Reemplaza este texto con el link de tu repositorio al subirlo]
+https://github.com/ConnorsSilverblue/portafolio-blog.git
