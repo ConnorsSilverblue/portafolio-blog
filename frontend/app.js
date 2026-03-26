@@ -21,18 +21,18 @@ async function cargarNoticias(contenedor) {
         const noticias = await res.json();
         
         contenedor.innerHTML = noticias.map(n => `
-            <div class="col-md-4 mb-4">
-                <div class="card h-100" style="background-color: #1e1e1e; border-left: 4px solid #013220;">
-                    <div class="card-body text-light">
-                        <h5 class="card-title text-decoration-underline" style="cursor:pointer;" onclick="window.location.href='noticia.html?id=${n.id}'">${n.titulo}</h5>
-                        <h6 class="card-subtitle mb-2 text-secondary">${n.categoria}</h6>
-                        <p class="card-text">${n.contenido.substring(0, 100)}...</p>
+            <div class="col-md-4">
+                <div class="news-card h-100 d-flex flex-column">
+                    <div class="card-body p-4">
+                        <span class="badge-category mb-3 d-inline-block">${n.categoria}</span>
+                        <h5 class="card-title mb-3" onclick="window.location.href='noticia.html?id=${n.id}'">${n.titulo}</h5>
+                        <p class="card-text text-secondary mb-0">${n.contenido.substring(0, 100)}...</p>
                     </div>
                 </div>
             </div>
         `).join('');
     } catch (error) {
-        contenedor.innerHTML = '<p>Conecta la base de datos y enciende el backend para ver las noticias.</p>';
+        contenedor.innerHTML = '<p class="text-center text-danger">Conecta la base de datos y enciende el backend.</p>';
     }
 }
 
@@ -41,8 +41,10 @@ async function cargarDetalle(id, contenedor) {
     const noticia = await res.json();
     
     contenedor.innerHTML = `
-        <h2 style="color: #ffffff;">${noticia.titulo}</h2>
-        <span class="badge mb-3" style="background-color: #800020;">${noticia.categoria}</span>
-        <p style="color: #b3b3b3;">${noticia.contenido}</p>
+        <div class="news-card p-5 mt-5">
+            <span class="badge-category mb-3 d-inline-block">${noticia.categoria}</span>
+            <h2 class="hero-title mb-4">${noticia.titulo}</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">${noticia.contenido}</p>
+        </div>
     `;
 }
