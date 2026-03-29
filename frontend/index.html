@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog IT</title>
+    <title>Blog de Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">Blog IT</a>
+            <a class="navbar-brand fw-bold" href="index.html" onclick="sessionStorage.removeItem('filtroCategoria')">Home</a>
+            <div class="navbar-nav me-auto" id="navCategorias"></div>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#">Tecnología</a>
-                <a class="nav-link" href="#">Programación</a>
+                <span class="nav-link" id="estadoLogin" style="cursor: pointer;" onclick="toggleLogin()">Login/Registro</span>
             </div>
         </div>
     </nav>
 
+    <div id="loginForm" class="container mt-5 pt-5 d-none" style="max-width: 400px;">
+        <div class="card bg-dark text-light border-secondary">
+            <div class="card-body">
+                <input type="email" id="emailInput" class="form-control mb-2" placeholder="Email">
+                <input type="password" id="passInput" class="form-control mb-3" placeholder="Contraseña">
+                <button class="btn btn-primary w-100 mb-2" onclick="login()">Ingresar</button>
+                <button class="btn btn-outline-light w-100" onclick="registro()">Registrar</button>
+            </div>
+        </div>
+    </div>
+
     <header class="hero-section text-center mt-5">
         <div class="container">
-            <h1 class="hero-title display-4">Últimas Noticias</h1>
-            <p class="lead text-secondary mt-3">El mejor contenido sobre desarrollo y tecnología</p>
+            <h1 class="hero-title display-4">Noticias Relevantes</h1>
         </div>
     </header>
 
     <main class="container my-5">
+        <div class="d-flex justify-content-end mb-4">
+            <select id="ordenSelect" class="form-select w-auto bg-dark text-light border-secondary" onchange="cargarNoticias()">
+                <option value="desc">Más recientes primero</option>
+                <option value="asc">Más antiguas primero</option>
+            </select>
+        </div>
         <div class="row g-4" id="contenedorNoticias"></div>
     </main>
 
-    <footer class="py-4 text-center mt-auto border-top" style="border-color: #1e293b !important;">
-        <p class="text-secondary mb-0">&copy; 2026 Blog IT - Constanza</p>
+    <footer class="py-4 text-center mt-auto border-top border-secondary">
+        <p class="text-secondary mb-0">Desarrollado por Connors</p>
     </footer>
 
     <script src="app.js"></script>
